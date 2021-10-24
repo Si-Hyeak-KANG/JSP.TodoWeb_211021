@@ -49,6 +49,9 @@ DB와 연동한 TODO LIST 웹서비스 개발, 최대한 나의 생각대로 만
 
 
 # 추가 정보
+
 server : tomcat 9.0
+
 JRE : Java SE-10
+
 DB : oracle
