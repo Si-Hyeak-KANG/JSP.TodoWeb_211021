@@ -46,3 +46,12 @@ DB와 연동한 TODO LIST 웹서비스 개발, 최대한 나의 생각대로 만
 
 2. (파란 플러스 버튼 클릭 시) 새 글 입력창 생성
 ![TodoWebUI(insert)](https://user-images.githubusercontent.com/79829085/138561315-9d001a9e-3a10-4d29-8c1d-c81cc4de6a12.JPG)
+
+
+# 추가 정보
+
+server : tomcat 9.0
+
+JRE : Java SE-10
+
+DB : oracle
