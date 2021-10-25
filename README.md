@@ -37,7 +37,8 @@ DB와 연동한 TODO LIST 웹서비스 개발, 최대한 나의 생각대로 만
  설계 후 업로드 예정
 
 ### * Flow chart
- 설계 후 업로드 예정
+![todo_flow](https://user-images.githubusercontent.com/79829085/138698488-9251d310-6ec5-47cf-837a-d7e7234764d7.jpg)
+
 
 
 # UI 디자인 (Figma)
@@ -48,7 +49,6 @@ DB와 연동한 TODO LIST 웹서비스 개발, 최대한 나의 생각대로 만
 ![todoWebUI(insert)](https://user-images.githubusercontent.com/79829085/138630340-baa05735-e5ec-4dec-b113-4199cf60c14e.JPG)
 
 
-
 # 추가 정보
 
 server : tomcat 9.0
@@ -56,3 +56,4 @@ server : tomcat 9.0
 JRE : Java SE-10
 
 DB : oracle
+
