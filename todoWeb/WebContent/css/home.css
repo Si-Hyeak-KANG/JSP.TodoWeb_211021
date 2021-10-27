@@ -121,7 +121,7 @@ button.minus_icn .fa-minus {
     width:17px;
     height:17px;
     line-height:17px;
-    border:1px solid #cbcbcb;
+    border:1px solid #000;
     vertical-align:middle;
 }
 
@@ -129,7 +129,7 @@ button.minus_icn .fa-minus {
     content:"\f00c";
     font-family:"Font Awesome 5 free";
     font-weight:900;
-    color:#fff;
+    color:#FFF;
     background-color:#000;
     border-color:#000;
     font-size:13px;
@@ -142,7 +142,6 @@ button.minus_icn .fa-minus {
     font-weight: bold;
     padding-left: 10px;
     color: #000;
-    box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     background-color: #FFF;
     cursor:text;
@@ -150,6 +149,7 @@ button.minus_icn .fa-minus {
 
 .fa-trash:hover {
     color: rgb(158, 158, 158);
+    transition: 0.2s;
 }
 
 .allDel_btn {
@@ -168,23 +168,6 @@ button.minus_icn .fa-minus {
     letter-spacing: 0.1em;
     color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.allDel_btn:hover {
-    position: absolute;
-    width: 120px;
-    height: 38px;
-    bottom: 0px;
-    left:265px;
-    background: #c4c4c4b6;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    font-family: Source Code Pro;
-    font-style: normal;
-    font-size: 18px;
-    letter-spacing: 0.1em;
-    color: #FFFFFF;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     cursor: pointer;
 }
 
@@ -195,4 +178,40 @@ button.minus_icn .fa-minus {
 .main .add_form_zone {
     background: #46529E;
     height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main .add_form_zone .input_text {
+    width: 520px;
+    height: 28px;
+    font-size: 14px;
+    padding-left: 10px;
+    background: #FFFFFF;
+    border: none;
+    box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.25);
+}
+
+.main .add_form_zone .input_btn {
+    width: 52px;
+    height: 23px;
+    margin-left: 15px;
+    padding-left: 9px;
+    background: #B1C0D7;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    font-family: Source Code Pro;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.main .add_form_zone .input_btn:active {
+    box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.25);
 }
