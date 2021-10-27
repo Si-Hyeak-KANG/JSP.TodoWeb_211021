@@ -1,3 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+	isELIgnored="false" %>
+
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -32,7 +44,7 @@
                         <input type="checkbox" id="chkList"/>
                         <label for="chkList"></label>
                     </p>
-                    <input type="text" class="get_list" value="보고서 작성" disabled/>
+                    <input type="text" class="get_list" disabled/>
                     <p class="trash_icn">
                         <i class="fas fa-trash"></i>
                     </p>
