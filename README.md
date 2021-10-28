@@ -42,14 +42,20 @@ DB와 연동한 TODO LIST 웹서비스 개발, 최대한 나의 생각대로 만
 
 
 # UI 디자인 (Figma)
+
 1. main_home
+
 ![todoWebUI(home)_2](https://user-images.githubusercontent.com/79829085/138928705-7426164f-3179-4a5c-85de-e5624c9ad8c7.JPG)
 
 
 
 2. (파란 플러스 버튼 클릭 시) 새 글 입력창 생성
+
 ![todoWebUI(insert)_2](https://user-images.githubusercontent.com/79829085/138928710-7646acaa-1e86-4957-8c90-b8153fcb0149.JPG)
 
+# E.R.D(todo_table)
+
+![todo_table_erd](https://user-images.githubusercontent.com/79829085/139273825-4a041958-9c82-4e0c-9ee5-ac741505af74.JPG)
 
 # 추가 정보
 
