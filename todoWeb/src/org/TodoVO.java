@@ -41,7 +41,7 @@ public class TodoVO {
 		return insertDate;
 	}
 
-	public void setJoinDate(Date insertDate) {
+	public void setInsertDate(Date insertDate) {
 		this.insertDate = insertDate;
 	}
 	
