@@ -138,8 +138,9 @@ button.minus_icn .fa-minus {
 .main .content .list_block .get_list {
     width: 522px;
     height: 30px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
+    letter-spacing: 0.1em;
     padding-left: 10px;
     color: #000;
     border-radius: 5px;

@@ -14,8 +14,6 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo home</title>
     <link rel="stylesheet" href="../css/home.css">
     <!-- font awesome icon -->
@@ -39,16 +37,20 @@
 
             <!-- content -->
             <div class="content">
-                <div class="list_block">
-                    <p class="chk_box">                    
-                        <input type="checkbox" id="chkList"/>
-                        <label for="chkList"></label>
-                    </p>
-                    <input type="text" class="get_list" disabled/>
-                    <p class="trash_icn">
-                        <i class="fas fa-trash"></i>
-                    </p>
-                </div>
+                <table>
+                    <tr class="list_block">
+                        <td class="chk_box">
+                            <input type="checkbox" id="chkList"/>
+                            <label for="chkList"></label>
+                        </td>
+                        <td>
+                            <input type="text" class="get_list" value="밥먹기"disabled/>
+                        </td>
+                        <td class="trash_icn">
+                            <i class="fas fa-trash"></i>
+                        </td>
+                    </tr>
+                </table>
                 <input type="button" class="allDel_btn"value="전체삭제"/>
             </div>
 
