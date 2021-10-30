@@ -10,7 +10,7 @@ public class TodoVO {
 	private Date insertDate;	// 글 작성 날짜
 	
 	public TodoVO() {
-		System.out.println("VO생성");
+		
 	}
 
 	public int getWriteNum() {

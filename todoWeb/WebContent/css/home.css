@@ -97,14 +97,20 @@ button.minus_icn .fa-minus {
     position: relative;
 }
 
+/*등록된 글이 없을 시*/
+.main .content p {
+	font-size: 20px;
+	text-align: center;
+	color: #FFF;
+}
+
 .main .content .list_block {
-    position: absolute;
-    top: 25px;
     width: 650px;
     height: 30px;
     display:flex;
     justify-content: space-evenly;
     align-items: center;
+    margin-top:10px;
 }
 
 .main .content .list_block .chk_box input#chkList{
@@ -128,13 +134,14 @@ button.minus_icn .fa-minus {
 .main .content .list_block .chk_box input#chkList:checked + label:before {
     content:"\f00c";
     font-family:"Font Awesome 5 free";
-    font-weight:900;
+    font-weight:600;
     color:#FFF;
     background-color:#000;
     border-color:#000;
-    font-size:13px;
+    font-size:11px;
     text-align:center;
 }
+
 .main .content .list_block .get_list {
     width: 522px;
     height: 30px;
@@ -186,6 +193,7 @@ button.minus_icn .fa-minus {
 }
 
 .main .add_form_zone .input_text {
+	display:none;
     width: 520px;
     height: 28px;
     font-size: 14px;
@@ -196,6 +204,7 @@ button.minus_icn .fa-minus {
 }
 
 .main .add_form_zone .input_btn {
+	display:none;
     width: 52px;
     height: 23px;
     margin-left: 15px;

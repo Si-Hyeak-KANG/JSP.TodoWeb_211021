@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	isELIgnored="false" %>
+	isELIgnored="false"%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -8,13 +8,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Todo home</title>
+    <title>TODO List</title>
     <link rel="stylesheet" href="../css/home.css">
     <!-- font awesome icon -->
     <link rel="stylesheet"
@@ -37,21 +36,31 @@
 
             <!-- content -->
             <div class="content">
-                <table>
-                    <tr class="list_block">
-                        <td class="chk_box">
-                            <input type="checkbox" id="chkList"/>
-                            <label for="chkList"></label>
-                        </td>
-                        <td>
-                            <input type="text" class="get_list" value="밥먹기"disabled/>
-                        </td>
-                        <td class="trash_icn">
-                            <i class="fas fa-trash"></i>
-                        </td>
-                    </tr>
-                </table>
-                <input type="button" class="allDel_btn"value="전체삭제"/>
+            	<c:choose>
+            		<c:when test="${empty lists}">
+            		<p>등록된 글이 없습니다.<p>
+            		</c:when>
+            		<c:otherwise>
+	                <table>
+						<c:forEach var="list" items="${lists}">
+							<tr class="list_block">
+		                        <td class="chk_box">
+		                            <input type="checkbox" id="chkList"/>
+		                            <label for="chkList"></label>
+		                        </td>
+		                        <td>
+		                            <input type="text" class="get_list" value="${list.content}" disabled/>
+		                        </td>
+		                        <td class="trash_icn">
+		                            <i class="fas fa-trash"></i>
+		                        </td>
+		                    </tr>
+						</c:forEach>
+	                </table>            		
+            		</c:otherwise>
+            	</c:choose>
+
+                <input type="button" class="allDel_btn"value="전체삭제" />
             </div>
 
             <!-- add form zone -->
