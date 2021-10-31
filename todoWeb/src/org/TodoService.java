@@ -25,5 +25,15 @@ public class TodoService {
 		return result;
 		
 	}
+
+	public void delOne(String content) {
+		
+		todoDAO.deleteOneList(content);
+		
+	}
+	
+	public void delAll() {
+		todoDAO.deleteAllList();
+	}
 	
 }

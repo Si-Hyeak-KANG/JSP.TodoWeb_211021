@@ -42,17 +42,17 @@
             		</c:when>
             		<c:otherwise> 
 	                <table>
-						<c:forEach var="list" items="${lists}">
+						<c:forEach var="list" items="${lists}" varStatus="writeNum">
 							<tr class="list_block">
 		                        <td class="chk_box">
 		                            <input type="checkbox" id="chkList"/>
-		                            <label for="chkList"></label>
 		                        </td>
 		                        <td>
-		                            <input type="text" class="get_list" value="${list.content}" disabled/>
+		                            <input type="text" name="content" class="get_list" value="${list.content}" disabled/>
+		                            <input type="hidden" name="writeNum" value="${writeNum.count}"/>
 		                        </td>
 		                        <td class="trash_icn">
-		                            <i class="fas fa-trash"></i>
+		                           <i class="fas fa-trash" onclick="fn_delOne()"></i>
 		                        </td>
 		                    </tr>
 						</c:forEach>
@@ -60,7 +60,7 @@
             		</c:otherwise>
             	</c:choose>
 
-                <input type="button" class="allDel_btn"value="전체삭제" />
+                <input type="button" onClick="fn_delAll()" class="allDel_btn"value="전체삭제" />
             </div>
 
             <!-- add form zone -->
@@ -96,6 +96,37 @@
 		} else {
 			todoFrm.method="post";
 			todoFrm.action="${contextPath}/todo/newContent.do";
+			todoFrm.submit();
+		}
+	}
+	
+	function fn_delOne() {
+		var todoFrm = document.todoFrm;
+		var chkBox = document.getElementById("chkList");
+		var chkMsg = window.confirm("완료하지 않은 글 입니다. 정말 삭제하시겠습니까?");
+		
+		if(chkBox.checked) {
+			todoFrm.method="post";
+			todoFrm.action="${contextPath}/todo/delOne.do";
+			todoFrm.submit();
+		} else  {
+			if(chkMsg) {
+				todoFrm.method="post";
+				todoFrm.action="${contextPath}/todo/delOne.do?writeNum=${writeNum.count}";
+				todoFrm.submit();
+			} else {
+				return;
+			}
+		}
+	}
+	
+	function fn_delAll() {
+		var todoFrm = document.todoFrm;
+		var chkMsg = window.confirm("전체 삭제하시겠습니까?");
+		
+		if (chkMsg) {
+			todoFrm.method="post";
+			todoFrm.action="${contextPath}/todo/delAll.do";
 			todoFrm.submit();
 		}
 	}

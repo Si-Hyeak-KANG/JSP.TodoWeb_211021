@@ -70,6 +70,17 @@ public class TodoController extends HttpServlet {
 				}
 
 				return;
+				
+			}else if(action.equals("/delOne.do")) {	// 선택 글 삭제
+				String content = request.getParameter("content");
+				todoService.delOne(content);
+				nextPage="/jsp/home.jsp";
+			}else if(action.equals("/delAll.do")) {	// 글 전체 삭제
+				todoService.delAll();
+				System.out.println("글 전체 삭제 완료");
+				nextPage="/jsp/home.jsp";
+			}else {
+				nextPage = "/jsp/home.jsp";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

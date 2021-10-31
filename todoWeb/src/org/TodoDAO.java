@@ -130,4 +130,37 @@ public class TodoDAO {
 
 		return result;
 	}
+
+	public void deleteOneList(String content) {
+
+		try {
+			conn = dataFactory.getConnection();
+			String query = "DELETE from todo_table where content=?";
+			System.out.println("SQL query : " + query);
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, content);
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void deleteAllList() {
+		try {
+			conn = dataFactory.getConnection();
+			String query = "DELETE from todo_table";
+			System.out.println("SQL query : " + query);
+			pstmt = conn.prepareStatement(query);
+			pstmt.executeUpdate();
+			System.out.println("데이터 전체 삭제");
+			pstmt.close();
+			conn.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
