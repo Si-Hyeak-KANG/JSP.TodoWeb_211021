@@ -18,5 +18,12 @@ public class TodoService {
 		return todoDAO.selectAllLists();
 
 	}
+
+	public int newContent(String text) {
+		
+		int result = todoDAO.insertNewList(text);
+		return result;
+		
+	}
 	
 }

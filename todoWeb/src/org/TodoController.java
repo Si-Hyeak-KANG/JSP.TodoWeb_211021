@@ -1,6 +1,7 @@
 package org;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -49,6 +50,26 @@ public class TodoController extends HttpServlet {
 				List<TodoVO> lists = todoService.searchTodoLists();	// 테이블에 저장된 데이터들을 List에 넣고 가져옴.
 				request.setAttribute("lists", lists);	// 가져온 List를 "lists" 이름으로 JSP로 전달
 				nextPage="/jsp/home.jsp";
+			}else if(action.equals("/newContent.do")) {
+				String text = request.getParameter("inputText");
+				int result = todoService.newContent(text);
+				PrintWriter pw = response.getWriter();
+				
+				if(result==1) {
+					pw.println("<script>"
+							+ " alert('새 글을 추가했습니다.');" 
+							+ " location.href='" + request.getContextPath()
+							+ "/todo/home.do';"
+							+ " </script>");
+				} else if(result==-1) {
+					pw.println("<script>"
+							+ " alert('더 이상 글을 추가할 수 없습니다.');"
+							+ " location.href='" + request.getContextPath()
+							+ "/todo/home.do';"
+							+ " </script>");
+				}
+
+				return;
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

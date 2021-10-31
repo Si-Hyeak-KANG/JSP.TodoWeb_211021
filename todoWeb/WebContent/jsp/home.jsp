@@ -66,7 +66,7 @@
             <!-- add form zone -->
             <div class="add_form_zone">
                 <input type="text" name="inputText" class="input_text" placeholder="글을 작성해주세요."/>
-                <input type="button" name="inputBtn" class="input_btn" value="입력"/>
+                <input type="button" onclick="fn_input()" name="inputBtn"  class="input_btn" value="입력"/>
             </div>
         </form>    
     </div>
@@ -86,6 +86,18 @@
 		var inputBtn = todoFrm.inputBtn;
 		inputText.style.visibility="hidden";
 		inputBtn.style.visibility="hidden";
+	}
+	
+	function fn_input() {
+		var todoFrm = document.todoFrm;
+		var inputText = todoFrm.inputText.value;
+		if(inputText.length==0 || inputText=="") {
+			alert('오류;글을 작성하고 입력을 눌러주세요.');
+		} else {
+			todoFrm.method="post";
+			todoFrm.action="${contextPath}/todo/newContent.do";
+			todoFrm.submit();
+		}
 	}
 </script>
 </body>
