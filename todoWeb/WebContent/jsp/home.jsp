@@ -18,6 +18,23 @@
     <!-- font awesome icon -->
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    <script type="text/javascript">
+    	function fn_plusBtn() {
+    		var input_text = document.todoFrm.getElementByClassName('input_text');
+    		var input_btn = document.todoFrm.getElementByClassName('input_btn');
+    		
+    		input_text.style.visibility='visible';
+    		input_btn.style.visibility='visible';
+    	}
+    	
+    	function fn_minusBtn() {
+    		var input_text = document.todoFrm.getElementByClassName('input_text');
+    		var input_btn = document.todoFrm.getElementByClassName('input_btn');
+    		
+    		input_text.style.visibility='hidden';
+    		input_btn.style.visibility='hidden';
+    	}
+    </script>
 </head>
 <body>
     <div class="main">
@@ -30,17 +47,17 @@
 
             <!-- sec btn zone -->
             <div class="sec_btn_zone">
-                <button type="button" class="plus_icn"><i class="fas fa-plus"></i></button>
-                <button type="button" class="minus_icn"><i class="fas fa-minus"></i></button>
+                <button type="button" onclick="fn_plusBtn()" class="plus_icn" ><i class="fas fa-plus"></i></button>
+                <button type="button" onclick="fn_minusBtn()" class="minus_icn" ><i class="fas fa-minus"></i></button>
             </div>
 
             <!-- content -->
             <div class="content">
             	<c:choose>
-            		<c:when test="${empty lists}">
+            		<c:when test="${empty lists}"> 
             		<p>등록된 글이 없습니다.<p>
             		</c:when>
-            		<c:otherwise>
+            		<c:otherwise> 
 	                <table>
 						<c:forEach var="list" items="${lists}">
 							<tr class="list_block">
@@ -65,7 +82,7 @@
 
             <!-- add form zone -->
             <div class="add_form_zone">
-                <input type="text"  class="input_text"/>
+                <input type="text" class="input_text" placeholder="글을 작성해주세요."/>
                 <input type="button" class="input_btn" value="입력"/>
             </div>
         </form>    
