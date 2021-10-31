@@ -50,7 +50,7 @@ public class TodoController extends HttpServlet {
 				List<TodoVO> lists = todoService.searchTodoLists();	// 테이블에 저장된 데이터들을 List에 넣고 가져옴.
 				request.setAttribute("lists", lists);	// 가져온 List를 "lists" 이름으로 JSP로 전달
 				nextPage="/jsp/home.jsp";
-			}else if(action.equals("/newContent.do")) {
+			}else if(action.equals("/newContent.do")) { // 새 글 작성 요청
 				String text = request.getParameter("inputText");
 				int result = todoService.newContent(text);
 				PrintWriter pw = response.getWriter();
