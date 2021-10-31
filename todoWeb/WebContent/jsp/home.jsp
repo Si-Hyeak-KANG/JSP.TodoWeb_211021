@@ -18,23 +18,6 @@
     <!-- font awesome icon -->
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
-    <script type="text/javascript">
-    	function fn_plusBtn() {
-    		var input_text = document.todoFrm.getElementByClassName('input_text');
-    		var input_btn = document.todoFrm.getElementByClassName('input_btn');
-    		
-    		input_text.style.visibility='visible';
-    		input_btn.style.visibility='visible';
-    	}
-    	
-    	function fn_minusBtn() {
-    		var input_text = document.todoFrm.getElementByClassName('input_text');
-    		var input_btn = document.todoFrm.getElementByClassName('input_btn');
-    		
-    		input_text.style.visibility='hidden';
-    		input_btn.style.visibility='hidden';
-    	}
-    </script>
 </head>
 <body>
     <div class="main">
@@ -82,11 +65,28 @@
 
             <!-- add form zone -->
             <div class="add_form_zone">
-                <input type="text" class="input_text" placeholder="글을 작성해주세요."/>
-                <input type="button" class="input_btn" value="입력"/>
+                <input type="text" name="inputText" class="input_text" placeholder="글을 작성해주세요."/>
+                <input type="button" name="inputBtn" class="input_btn" value="입력"/>
             </div>
         </form>    
     </div>
 
+<script type="text/javascript">
+	function fn_plusBtn() {
+		var todoFrm = document.todoFrm;
+		var inputText = todoFrm.inputText;
+		var inputBtn = todoFrm.inputBtn;
+		inputText.style.visibility="visible";
+		inputBtn.style.visibility="visible";
+	}
+	
+	function fn_minusBtn() {
+		var todoFrm = document.todoFrm;
+		var inputText = todoFrm.inputText;
+		var inputBtn = todoFrm.inputBtn;
+		inputText.style.visibility="hidden";
+		inputBtn.style.visibility="hidden";
+	}
+</script>
 </body>
 </html>
