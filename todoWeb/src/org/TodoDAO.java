@@ -72,7 +72,7 @@ public class TodoDAO {
 	}
 
 	// 테이블 안 데이터 갯수
-	public int selectListsCount() {
+	private int selectListsCount() {
 		int count=1;
 		try {
 			conn = dataFactory.getConnection();
@@ -101,10 +101,36 @@ public class TodoDAO {
 		return count;
 	}
 	
+	// 새 글 번호
+	private int getMaxWriteNum() {
+		
+		try {
+			conn = dataFactory.getConnection();
+			String query = "SELECT max(writeNum) FROM todo_table";
+			System.out.println("SQL query : " + query);
+			pstmt = conn.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {	
+				System.out.println("새 글 번호를 가져왔습니다.");
+				return (rs.getInt(1)+1);
+				
+			}
+			rs.close();
+			pstmt.close();
+			conn.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
 	// 새 글 작성
 	public int insertNewList(String text) {
 		int result=-1;
 		int count = selectListsCount();
+		int writeNum = getMaxWriteNum();
 		
 		if(count < 11) {
 			try {
@@ -113,11 +139,10 @@ public class TodoDAO {
 						+ " VALUES (?,?)";
 				System.out.println("SQL query : " + query);
 				pstmt = conn.prepareStatement(query);
-				pstmt.setInt(1, count);
+				pstmt.setInt(1, writeNum);
 				pstmt.setString(2, text);
 				pstmt.executeUpdate();
 				result =1;
-				
 				System.out.println("성공적으로 새 글을 DB에 넣었습니다.");
 				pstmt.close();
 				conn.close();

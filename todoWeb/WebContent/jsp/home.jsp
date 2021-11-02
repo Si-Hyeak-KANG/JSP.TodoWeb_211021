@@ -46,7 +46,8 @@
 						<c:forEach var="list" items="${lists}" varStatus="count">
 							<tr class="list_block">
 		                        <td class="chk_box">
-		                            <input type="checkbox" onclick="fn_chkList(${list.writeNum})" id="chkList" name ="chkList" />
+		                            <input type="checkbox" onclick="fn_chkList(${list.writeNum})" id="chkList" name ="chkList" value=""/>
+		                            <input type="hidden" name="complete_info" value="${list.complete}"/>
 		                        </td>
 		                        <td>
 		                           	<input type="text" name="content" class="get_list" value="${list.content}" disabled/>
@@ -99,6 +100,19 @@
 			todoFrm.submit();
 		}
 	}
+	function fn_chkList(num) {
+		var todoFrm = document.todoFrm;
+		var complete = todoFrm.complete_info.value;
+		
+		if(complete=="n"){
+			todoFrm.method="post";
+			todoFrm.action="${contextPath}/todo/chkComplete.do?complete=y&writeNum="+num;
+		} else {
+			todoFrm.method="post";
+			todoFrm.action="${contextPath}/todo/chkComplete.do?complete=n&writeNum="+num;
+		}
+		todoFrm.submit();
+	}
 	
 	function fn_delOne(num) {
 		var todoFrm = document.todoFrm;
@@ -130,23 +144,8 @@
 			todoFrm.submit();
 		}
 	}
-	
-	function fn_chkList(num) {
-		var todoFrm = document.todoFrm;
-		var chkList = todoFrm.chkList;
-		chkList.value="n";
-		for (var i=0; i<chkList.length; i++) {
-			if(chkList[i].checked) {
-				chkList.value="y";
-				
-				todoFrm.method="post";
-				todoFrm.action="${contextPath}/todo/chkComplete.do?writeNum="+num;
-				todoFrm.submit();
-			}
-		}
-		
 
-	}
+	
 
 </script>
 </body>
