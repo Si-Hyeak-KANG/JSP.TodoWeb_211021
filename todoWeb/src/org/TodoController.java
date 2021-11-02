@@ -86,7 +86,7 @@ public class TodoController extends HttpServlet {
 				System.out.println("글 전체 삭제 완료");
 				nextPage="/todo/home.do";
 			}else {
-				nextPage="/home.do";
+				nextPage="/todo/home.do";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
