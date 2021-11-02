@@ -71,16 +71,22 @@ public class TodoController extends HttpServlet {
 
 				return;
 				
+			}else if(action.equals("/chkComplete.do")){ // checkbox 선택시 수행 업데이트
+				String chkComplete = request.getParameter("chkList");
+				int writeNum = Integer.parseInt(request.getParameter("writeNum"));
+				todoService.checkComplete(chkComplete,writeNum);
+				nextPage="/home.do";
 			}else if(action.equals("/delOne.do")) {	// 선택 글 삭제
-				String content = request.getParameter("content");
-				todoService.delOne(content);
-				nextPage="/jsp/home.jsp";
+				int writeNum = Integer.parseInt(request.getParameter("writeNum"));
+					todoService.delOne(writeNum);
+					System.out.println(writeNum+"번 글 삭제 완료");
+					nextPage="/todo/home.do";
 			}else if(action.equals("/delAll.do")) {	// 글 전체 삭제
 				todoService.delAll();
 				System.out.println("글 전체 삭제 완료");
-				nextPage="/jsp/home.jsp";
+				nextPage="/todo/home.do";
 			}else {
-				nextPage = "/jsp/home.jsp";
+				nextPage="/home.do";
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

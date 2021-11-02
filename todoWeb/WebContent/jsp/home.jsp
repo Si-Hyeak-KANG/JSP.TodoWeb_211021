@@ -38,21 +38,21 @@
             <div class="content">
             	<c:choose>
             		<c:when test="${empty lists}"> 
-            		<p>등록된 글이 없습니다.<p>
+            		<br><br><p>등록된 글이 없습니다.<p><br>
+            		<p>플러스 버튼을 클릭하여 글을 추가해주세요.</p>
             		</c:when>
             		<c:otherwise> 
 	                <table>
-						<c:forEach var="list" items="${lists}" varStatus="writeNum">
+						<c:forEach var="list" items="${lists}" varStatus="count">
 							<tr class="list_block">
 		                        <td class="chk_box">
-		                            <input type="checkbox" id="chkList"/>
+		                            <input type="checkbox" onclick="fn_chkList(${list.writeNum})" id="chkList" name ="chkList" />
 		                        </td>
 		                        <td>
-		                            <input type="text" name="content" class="get_list" value="${list.content}" disabled/>
-		                            <input type="hidden" name="writeNum" value="${writeNum.count}"/>
+		                           	<input type="text" name="content" class="get_list" value="${list.content}" disabled/>
 		                        </td>
 		                        <td class="trash_icn">
-		                           <i class="fas fa-trash" onclick="fn_delOne()"></i>
+		                           <i class="fas fa-trash" onclick="fn_delOne(${list.writeNum})"></i>
 		                        </td>
 		                    </tr>
 						</c:forEach>
@@ -100,19 +100,19 @@
 		}
 	}
 	
-	function fn_delOne() {
+	function fn_delOne(num) {
 		var todoFrm = document.todoFrm;
 		var chkBox = document.getElementById("chkList");
 		var chkMsg = window.confirm("완료하지 않은 글 입니다. 정말 삭제하시겠습니까?");
 		
 		if(chkBox.checked) {
 			todoFrm.method="post";
-			todoFrm.action="${contextPath}/todo/delOne.do";
+			todoFrm.action="${contextPath}/todo/delOne.do?writeNum="+num;
 			todoFrm.submit();
 		} else  {
 			if(chkMsg) {
 				todoFrm.method="post";
-				todoFrm.action="${contextPath}/todo/delOne.do?writeNum=${writeNum.count}";
+				todoFrm.action="${contextPath}/todo/delOne.do?writeNum="+num;
 				todoFrm.submit();
 			} else {
 				return;
@@ -130,6 +130,24 @@
 			todoFrm.submit();
 		}
 	}
+	
+	function fn_chkList(num) {
+		var todoFrm = document.todoFrm;
+		var chkList = todoFrm.chkList;
+		chkList.value="n";
+		for (var i=0; i<chkList.length; i++) {
+			if(chkList[i].checked) {
+				chkList.value="y";
+				
+				todoFrm.method="post";
+				todoFrm.action="${contextPath}/todo/chkComplete.do?writeNum="+num;
+				todoFrm.submit();
+			}
+		}
+		
+
+	}
+
 </script>
 </body>
 </html>

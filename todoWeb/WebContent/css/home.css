@@ -97,13 +97,15 @@ button.minus_icn .fa-minus {
     position: relative;
 }
 
-/*등록된 글이 없을 시*/
-.main .content p {
-	font-size: 20px;
+/*null list*/
+.main .content p{
+	font-size: 18px;
 	text-align: center;
-	color: #FFF;
+	color: #808080;
 }
 
+
+/*not null list*/
 .main .content .list_block {
     width: 650px;
     height: 30px;
@@ -111,6 +113,12 @@ button.minus_icn .fa-minus {
     justify-content: space-evenly;
     align-items: center;
     margin-top:10px;
+}
+
+#chkList {
+	width: 20px; 
+	height: 20px; 
+	cursor: pointer;
 }
 
 .main .content .list_block .get_list {

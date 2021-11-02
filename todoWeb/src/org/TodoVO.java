@@ -4,12 +4,21 @@ import java.sql.Date;
 
 public class TodoVO {
 
+	private int writeNum;		// 글 번호
 	private String content;		// 글 내용
 	private String complete;	// 수행 여부
 	private Date insertDate;	// 글 작성 날짜
 	
 	public TodoVO() {
 		
+	}
+
+	public int getWriteNum() {
+		return writeNum;
+	}
+
+	public void setWriteNum(int writeNum) {
+		this.writeNum = writeNum;
 	}
 
 	public String getContent() {

@@ -26,14 +26,19 @@ public class TodoService {
 		
 	}
 
-	public void delOne(String content) {
+	public void delOne(int writeNum) {
 		
-		todoDAO.deleteOneList(content);
+		todoDAO.deleteOneList(writeNum);
 		
 	}
 	
 	public void delAll() {
 		todoDAO.deleteAllList();
+	}
+
+	public void checkComplete(String chkComplete,int writeNum) {
+		todoDAO.updateComplete(chkComplete,writeNum);
+		
 	}
 	
 }

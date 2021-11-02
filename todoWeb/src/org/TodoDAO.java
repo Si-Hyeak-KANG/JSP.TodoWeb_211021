@@ -38,18 +38,19 @@ public class TodoDAO {
 		
 		try {
 			conn = dataFactory.getConnection();
-			String query = "SELECT * FROM todo_table ORDER BY insertDate DESC";
+			String query = "SELECT * FROM todo_table ORDER BY writeNum";
 			System.out.println("SQL query : " + query);
 			pstmt = conn.prepareStatement(query);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-			
+				int writeNum = rs.getInt("writeNum");
 				String content = rs.getString("content");
 				String complete = rs.getString("complete");
 				Date insertDate = rs.getDate("insertDate");
 				
 				TodoVO todoVO = new TodoVO();
+				todoVO.setWriteNum(writeNum);
 				todoVO.setContent(content);
 				todoVO.setComplete(complete);
 				todoVO.setInsertDate(insertDate);
@@ -108,11 +109,12 @@ public class TodoDAO {
 		if(count < 11) {
 			try {
 				conn = dataFactory.getConnection();
-				String query = "INSERT INTO todo_table (content)"
-						+ " VALUES (?)";
+				String query = "INSERT INTO todo_table (writeNum,content)"
+						+ " VALUES (?,?)";
 				System.out.println("SQL query : " + query);
 				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, text);
+				pstmt.setInt(1, count);
+				pstmt.setString(2, text);
 				pstmt.executeUpdate();
 				result =1;
 				
@@ -131,15 +133,16 @@ public class TodoDAO {
 		return result;
 	}
 
-	public void deleteOneList(String content) {
+	public void deleteOneList(int writeNum) {
 
 		try {
 			conn = dataFactory.getConnection();
-			String query = "DELETE from todo_table where content=?";
+			String query = "DELETE FROM todo_table WHERE writeNum=?";
 			System.out.println("SQL query : " + query);
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, content);
+			pstmt.setInt(1, writeNum);
 			pstmt.executeUpdate();
+			System.out.println(writeNum + "번의 글을 데이터에서 삭제합니다.");
 			pstmt.close();
 			conn.close();
 			
@@ -151,11 +154,29 @@ public class TodoDAO {
 	public void deleteAllList() {
 		try {
 			conn = dataFactory.getConnection();
-			String query = "DELETE from todo_table";
+			String query = "DELETE FROM todo_table";
 			System.out.println("SQL query : " + query);
 			pstmt = conn.prepareStatement(query);
 			pstmt.executeUpdate();
 			System.out.println("데이터 전체 삭제");
+			pstmt.close();
+			conn.close();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void updateComplete(String chkComplete,int writeNum) {
+		try {
+			conn = dataFactory.getConnection();
+			String query = "Update todo_table SET complete=? WHERE writeNum=?";
+			System.out.println("SQL query : " + query);
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, chkComplete);
+			pstmt.setInt(2, writeNum);
+			pstmt.executeUpdate();
+			System.out.println(writeNum + "번 글의 complete 수정 :" + chkComplete);
 			pstmt.close();
 			conn.close();
 			
