@@ -44,10 +44,9 @@
             		<c:otherwise> 
 	                <table>
 						<c:forEach var="list" items="${lists}" varStatus="count">
-							<tr class="list_block">
+							<tr class="list_block">	                        
 		                        <td class="chk_box">
-		                            <input type="checkbox" onclick="fn_chkList(${list.writeNum})" id="chkList" name ="chkList" value=""/>
-		                            <input type="hidden" name="complete_info" value="${list.complete}"/>
+		                            <input type="checkbox" onclick="fn_chkList(${list.writeNum})" id="chkList" name ="chkList" value="y" />
 		                        </td>
 		                        <td>
 		                           	<input type="text" name="content" class="get_list" value="${list.content}" disabled/>
@@ -102,15 +101,9 @@
 	}
 	function fn_chkList(num) {
 		var todoFrm = document.todoFrm;
-		var complete = todoFrm.complete_info.value;
 		
-		if(complete=="n"){
-			todoFrm.method="post";
-			todoFrm.action="${contextPath}/todo/chkComplete.do?complete=y&writeNum="+num;
-		} else {
-			todoFrm.method="post";
-			todoFrm.action="${contextPath}/todo/chkComplete.do?complete=n&writeNum="+num;
-		}
+		todoFrm.method="post";
+		todoFrm.action="${contextPath}/todo/chkComplete.do?writeNum="+num;
 		todoFrm.submit();
 	}
 	
@@ -123,13 +116,12 @@
 			todoFrm.method="post";
 			todoFrm.action="${contextPath}/todo/delOne.do?writeNum="+num;
 			todoFrm.submit();
-		} else  {
+			
+		} else {
 			if(chkMsg) {
 				todoFrm.method="post";
 				todoFrm.action="${contextPath}/todo/delOne.do?writeNum="+num;
 				todoFrm.submit();
-			} else {
-				return;
 			}
 		}
 	}

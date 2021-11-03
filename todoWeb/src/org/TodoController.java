@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class todoController
@@ -72,7 +73,7 @@ public class TodoController extends HttpServlet {
 				return;
 				
 			}else if(action.equals("/chkComplete.do")){ // checkbox 선택시 수행 업데이트
-				String chkComplete = request.getParameter("complete");
+				String chkComplete = request.getParameter("chkList");
 				int writeNum = Integer.parseInt(request.getParameter("writeNum"));
 				todoService.checkComplete(chkComplete,writeNum);
 				nextPage="/todo/home.do";
