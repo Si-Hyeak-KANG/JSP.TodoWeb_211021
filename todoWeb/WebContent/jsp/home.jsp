@@ -46,7 +46,7 @@
 						<c:forEach var="list" items="${lists}" varStatus="count">
 							<tr class="list_block">	                        
 		                        <td class="chk_box">
-		                            <input type="checkbox" onclick="fn_chkList(${list.writeNum})" id="chkList" name ="chkList" value="y" />
+		                            <input type="button" id="chkList" onclick="fn_chkList(${list.writeNum},${list.complete})" />
 		                        </td>
 		                        <td>
 		                           	<input type="text" name="content" class="get_list" value="${list.content}" disabled/>
@@ -99,12 +99,17 @@
 			todoFrm.submit();
 		}
 	}
-	function fn_chkList(num) {
+	function fn_chkList(num,complete) {
 		var todoFrm = document.todoFrm;
+		var chkComplete="n";
+		if (complete=="n") {
+			chkComplete="y";
+		}
 		
 		todoFrm.method="post";
-		todoFrm.action="${contextPath}/todo/chkComplete.do?writeNum="+num;
+		todoFrm.action="${contextPath}/todo/chkComplete.do?writeNum="+num+"&chkComplete="+chkComplete;
 		todoFrm.submit();
+
 	}
 	
 	function fn_delOne(num) {
