@@ -41,23 +41,47 @@
             		<br><br><p>등록된 글이 없습니다.<p><br>
             		<p>플러스 버튼을 클릭하여 글을 추가해주세요.</p>
             		</c:when>
+            		
             		<c:otherwise> 
 	                <table>
-						<c:forEach var="list" items="${lists}" varStatus="count">
+						<c:forEach var="list" items="${lists}">
+						
+						<c:choose>
+							<c:when test="${list.complete=='n'}">
 							<tr class="list_block">	                        
-		                        <td class="chk_box">
-		                            <input type="button" id="chkList" onclick="fn_chkList(${list.writeNum},${list.complete})" />
+		                       	<td class="chk_box">
+		                            <input type="button" id="chkList" onclick="fn_chkList(${list.writeNum})"/>
+		                            <input type="hidden" name="chkComplete" value="y">
 		                        </td>
 		                        <td>
-		                           	<input type="text" name="content" class="get_list" value="${list.content}" disabled/>
+		                           	<input type="text" id="content"name="content" value="${list.content}" disabled/>
 		                        </td>
 		                        <td class="trash_icn">
 		                           <i class="fas fa-trash" onclick="fn_delOne(${list.writeNum})"></i>
 		                        </td>
 		                    </tr>
+							</c:when>
+							
+							<c:when test="${list.complete=='y'}">
+							<tr class="list_block">	                        
+		                       	<td class="chk_box">
+		                            <input type="button" id="chkList" onclick="fn_chkList(${list.writeNum})" class="selected"/>
+		                            <input type="hidden" name="chkComplete" value="n">
+		                        </td>
+		                        <td>
+		                           	<input type="text" id="content"name="content" value="${list.content}" class="checked" disabled/>
+		                        </td>
+		                        <td class="trash_icn">
+		                           <i class="fas fa-trash" onclick="fn_delOne(${list.writeNum})"></i>
+		                        </td>
+		                    </tr>
+							</c:when>
+							</c:choose>
+							
 						</c:forEach>
 	                </table>            		
             		</c:otherwise>
+            		
             	</c:choose>
 
                 <input type="button" onClick="fn_delAll()" class="allDel_btn"value="전체삭제" />
@@ -71,6 +95,7 @@
         </form>    
     </div>
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 	function fn_plusBtn() {
 		var todoFrm = document.todoFrm;
@@ -99,15 +124,11 @@
 			todoFrm.submit();
 		}
 	}
-	function fn_chkList(num,complete) {
+	
+	function fn_chkList(num) {
 		var todoFrm = document.todoFrm;
-		var chkComplete="n";
-		if (complete=="n") {
-			chkComplete="y";
-		}
-		
 		todoFrm.method="post";
-		todoFrm.action="${contextPath}/todo/chkComplete.do?writeNum="+num+"&chkComplete="+chkComplete;
+		todoFrm.action="${contextPath}/todo/chkComplete.do?writeNum="+num;
 		todoFrm.submit();
 
 	}

@@ -122,7 +122,21 @@ button.minus_icn .fa-minus {
 	cursor: pointer;
 }
 
-.main .content .list_block .get_list {
+#chkList:hover {
+	transition: 0.1s;
+	background-image: url("https://image.shutterstock.com/z/stock-vector-check-mark-check-icon-vector-in-trendy-flat-style-isolated-on-white-background-check-icon-image-743283880.jpg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	opacity: 0.8;
+}
+
+#chkList.selected {
+	background-image: url("https://image.shutterstock.com/z/stock-vector-check-mark-check-icon-vector-in-trendy-flat-style-isolated-on-white-background-check-icon-image-743283880.jpg");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.main .content .list_block #content {
     width: 522px;
     height: 30px;
     font-size: 15px;
@@ -130,6 +144,20 @@ button.minus_icn .fa-minus {
     letter-spacing: 0.1em;
     padding-left: 10px;
     color: #000;
+    border-radius: 5px;
+    background-color: #FFF;
+    cursor:text;
+}
+
+.main .content .list_block #content.checked {
+    width: 522px;
+    height: 30px;
+    font-size: 15px;
+    font-weight: medium;
+    letter-spacing: 0.1em;
+    text-decoration: line-through;
+    padding-left: 10px;
+    color: #808080;
     border-radius: 5px;
     background-color: #FFF;
     cursor:text;
