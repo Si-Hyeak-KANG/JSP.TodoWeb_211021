@@ -65,3 +65,4 @@ JRE : Java SE-10
 
 DB : oracle
 
+프로젝트 구성 : JSP, Servlet,css3,jquery
