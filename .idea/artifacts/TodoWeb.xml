@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="TodoWeb">
+    <output-path>$PROJECT_DIR$/out/artifacts/TodoWeb</output-path>
+    <root id="root">
+      <element id="archive" name="TodoWeb.jar">
+        <element id="module-output" name="TodoWeb" />
+      </element>
+    </root>
+  </artifact>
+</component>

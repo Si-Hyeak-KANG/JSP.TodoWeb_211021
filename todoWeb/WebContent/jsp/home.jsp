@@ -46,38 +46,36 @@
 	                <table>
 						<c:forEach var="list" items="${lists}">
 						
-						<c:choose>
-							<c:when test="${list.complete=='n'}">
-							<tr class="list_block">	                        
-		                       	<td class="chk_box">
-		                            <input type="button" id="chkList" onclick="fn_chkList(${list.writeNum})"/>
-		                            <input type="hidden" name="chkComplete" value="y">
-		                        </td>
-		                        <td>
-		                           	<input type="text" id="content"name="content" value="${list.content}" disabled/>
-		                        </td>
-		                        <td class="trash_icn">
-		                           <i class="fas fa-trash" onclick="fn_delOne(${list.writeNum})"></i>
-		                        </td>
-		                    </tr>
-							</c:when>
-							
-							<c:when test="${list.complete=='y'}">
-							<tr class="list_block">	                        
-		                       	<td class="chk_box">
-		                            <input type="button" id="chkList" onclick="fn_chkList(${list.writeNum})" class="selected"/>
-		                            <input type="hidden" name="chkComplete" value="n">
-		                        </td>
-		                        <td>
-		                           	<input type="text" id="content"name="content" value="${list.content}" class="checked" disabled/>
-		                        </td>
-		                        <td class="trash_icn">
-		                           <i class="fas fa-trash" onclick="fn_delOne(${list.writeNum})"></i>
-		                        </td>
-		                    </tr>
-							</c:when>
-							</c:choose>
-							
+						<c:if test="${list.complete eq 'n'}">
+						<tr class="list_block">	                        
+	                       	<td class="chk_box">
+	                            <input type="button" id="chkList" onclick="fn_chkList(${list.writeNum})"/>
+	                            <input type="hidden" name="chkComplete" value="y">
+	                        </td>
+	                        <td>
+	                           	<input type="text" id="content"name="content" value="${list.content}" disabled/>
+	                        </td>
+	                        <td class="trash_icn">
+	                           <i class="fas fa-trash" id="delOne" onclick="fn_delOne(${list.writeNum})"></i>
+	                        </td>
+		                 </tr>
+		                 </c:if>
+
+						<c:if test="${list.complete eq 'y' }">
+						<tr class="list_block">	                        
+	                       	<td class="chk_box">
+	                            <input type="button" id="chkList" onclick="fn_chkList(${list.writeNum})" class="selected"/>
+	                            <input type="hidden" name="chkComplete" value="n">
+	                        </td>
+	                        <td>
+	                           	<input type="text" id="content"name="content" value="${list.content}" class="checked" disabled/>
+	                        </td>
+	                        <td class="trash_icn">
+	                           <i class="fas fa-trash" id="delOne" onclick="fn_delOne(${list.writeNum})"></i>
+	                        </td>
+	                    </tr>
+	                    </c:if>
+			
 						</c:forEach>
 	                </table>            		
             		</c:otherwise>
@@ -130,27 +128,15 @@
 		todoFrm.method="post";
 		todoFrm.action="${contextPath}/todo/chkComplete.do?writeNum="+num;
 		todoFrm.submit();
-
 	}
 	
 	function fn_delOne(num) {
 		var todoFrm = document.todoFrm;
-		var chkBox = document.getElementById("chkList");
-		var chkMsg = window.confirm("완료하지 않은 글 입니다. 정말 삭제하시겠습니까?");
 		
-		if(chkBox.checked) {
 			todoFrm.method="post";
 			todoFrm.action="${contextPath}/todo/delOne.do?writeNum="+num;
 			todoFrm.submit();
-			
-		} else {
-			if(chkMsg) {
-				todoFrm.method="post";
-				todoFrm.action="${contextPath}/todo/delOne.do?writeNum="+num;
-				todoFrm.submit();
-			}
-		}
-	}
+	} 
 	
 	function fn_delAll() {
 		var todoFrm = document.todoFrm;
@@ -162,8 +148,6 @@
 			todoFrm.submit();
 		}
 	}
-
-	
 
 </script>
 </body>
